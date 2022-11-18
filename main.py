@@ -93,7 +93,7 @@ class RoomState:
 
     def get_enableable_keys(self) -> list[int]:
         possible_madeline_positions: list[int] = (self
-            .get_connections_graph_during_block_movement()
+            .get_connections_graph()
             .get_possible_madeline_positions(self.madeline_position))
         enableable_keys: list[int] = []
         if (1 in possible_madeline_positions) and (not self._red   ): enableable_keys.append(1)
@@ -105,6 +105,10 @@ class RoomState:
         return enableable_keys
 
     def get_connections_graph(self) -> RoomGraph:
+        return self._get_connections_graph_after_block_movement()
+        # return self._get_connections_graph_during_block_movement()
+
+    def _get_connections_graph_after_block_movement(self) -> RoomGraph:
         rg = RoomGraph()
         if self._red:
             rg.connect(1, 2)
@@ -126,7 +130,7 @@ class RoomState:
             rg.disconnect(1, 4)
         return rg
 
-    def get_connections_graph_during_block_movement(self) -> RoomGraph:
+    def _get_connections_graph_during_block_movement(self) -> RoomGraph:
         rg = RoomGraph()
         if self._red:
             rg.connect(1, 2)
@@ -173,7 +177,7 @@ def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0)
         solution.append(f"key in cell #{enableable_key}")
         check_is_solved(rsm)
         possible_madeline_positions: list[int] = (rsm
-            .get_connections_graph_during_block_movement()
+            .get_connections_graph()
             .get_possible_madeline_positions(rsm.madeline_position))
         for possible_madeline_position in possible_madeline_positions:
             if recursion_step <= RECURSION_STEP_TO_PRINT:
