@@ -151,8 +151,8 @@ def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0)
     #     print(' '*2*(recursion_step-1) + "working...")
 
     def is_solved(rs_: RoomState) -> bool:
-        # return rs.is_all_keys_enabled() and rs.get_connections_graph().can_finish(rs.madeline_position)
-        return rs.is_all_keys_enabled() and rs.madeline_position == FINISH_CELL_INDEX
+        # return rs_.is_all_keys_enabled() and rs.get_connections_graph().can_finish(rs.madeline_position)
+        return rs_.is_all_keys_enabled() and rs.madeline_position == FINISH_CELL_INDEX
         # return rs_.is_all_keys_enabled()
 
     def check_is_solved(rs_: RoomState):
