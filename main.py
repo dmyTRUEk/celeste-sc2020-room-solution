@@ -187,6 +187,8 @@ def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0)
             solution.append(f"madeline in cell #{possible_madeline_position}")
             check_is_solved(rsmm)
             find_solution(rsmm, solution, recursion_step+1)
+            solution.pop()
+        solution.pop()
 
 
 
