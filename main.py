@@ -157,7 +157,7 @@ def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0)
     def is_solved(rs_: RoomState) -> bool:
         # return rs_.is_all_keys_enabled() and rs.get_connections_graph().can_finish(rs.madeline_position)
         return rs_.is_all_keys_enabled() and rs.madeline_position == FINISH_CELL_INDEX
-        # return rs_.is_all_keys_enabled()
+        # return rs_.is_all_keys_enabled() # to test if it works
 
     def check_is_solved(rs_: RoomState):
         if is_solved(rs_):
@@ -168,7 +168,7 @@ def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0)
 
     check_is_solved(rs)
 
-    enableable_keys: list[None | int] = ([None] if recursion_step==0 else []) + rs.get_enableable_keys()
+    enableable_keys: list[None | int] = ([None] if recursion_step==0 else []) + rs.get_enableable_keys() # here [None] on first step of recurstion actually means skipping block moving and moving madeline to some spot
     for enableable_key in enableable_keys:
         if recursion_step <= RECURSION_STEP_TO_PRINT:
             print('-'*(2*recursion_step) + f"thinking on key in cell #{enableable_key} / {enableable_keys}...")
