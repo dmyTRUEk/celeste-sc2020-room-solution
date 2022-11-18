@@ -150,7 +150,7 @@ class RoomState:
 
 
 def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0):
-    RECURSION_STEP_TO_PRINT: int = 2
+    MAX_RECURSION_STEP_TO_PRINT: int = 2
     # if 0 < recursion_step <= 2:
     #     print(' '*2*(recursion_step-1) + "working...")
 
@@ -170,7 +170,7 @@ def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0)
 
     enableable_keys: list[None | int] = ([None] if recursion_step==0 else []) + rs.get_enableable_keys() # here [None] on first step of recurstion actually means skipping block moving and moving madeline to some spot
     for enableable_key in enableable_keys:
-        if recursion_step <= RECURSION_STEP_TO_PRINT:
+        if recursion_step <= MAX_RECURSION_STEP_TO_PRINT:
             print('-'*(2*recursion_step) + f"thinking on key in cell #{enableable_key} / {enableable_keys}...")
         rsm: RoomState = deepcopy(rs)
         rsm.enable_key(enableable_key)
@@ -180,7 +180,7 @@ def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0)
             .get_connections_graph()
             .get_possible_madeline_positions(rsm.madeline_position))
         for possible_madeline_position in possible_madeline_positions:
-            if recursion_step <= RECURSION_STEP_TO_PRINT:
+            if recursion_step <= MAX_RECURSION_STEP_TO_PRINT:
                 print('-'*(2*recursion_step+1) + f"thinking on madeline position in cell #{possible_madeline_position} / {possible_madeline_positions}...")
             rsmm: RoomState = deepcopy(rsm)
             rsmm.madeline_position = possible_madeline_position
