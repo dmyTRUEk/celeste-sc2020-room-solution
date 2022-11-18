@@ -150,7 +150,7 @@ class RoomState:
 
 
 def find_solution(rs: RoomState, solution: list = list(), recursion_step: int=0):
-    MAX_RECURSION_STEP_TO_PRINT: int = 2
+    MAX_RECURSION_STEP_TO_PRINT: int = 1
     # if 0 < recursion_step <= 2:
     #     print(' '*2*(recursion_step-1) + "working...")
 
